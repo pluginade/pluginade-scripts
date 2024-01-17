@@ -1,0 +1,13 @@
+node_modules
+package-lock.json
+.parcel-cache
+.DS_Store
+build
+/vendor
+/phpcs.xml.bak
+/phpcs.xml
+/.wp-env.json
+/.wp-env.json.bak
+.phpunit.result.cache
+/docker-phpunit/docker-compose.yml.bak
+/docker-phpunit/docker-compose.yml

@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    container_name: pluginade-phpunit-wordpress
+    build:
+        context: ./context
+        dockerfile: wordpress.Dockerfile
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress:/var/www/html
+      - ./wp-config-docker.php:/var/www/html/wp-config.php
+      - LOCAL_PATH_TO_PLUGIN:/var/www/html/wp-content/plugins/BASENAME_OF_PLUGIN
+      - ./../:/usr/src/pluginade/pluginade-scripts
+      # - empty-volume: /var/www/html/wp-content/plugins/plugin/.pluginade
+
+  db:
+    container_name: pluginade-phpunit-db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:

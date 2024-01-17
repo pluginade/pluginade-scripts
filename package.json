@@ -1,0 +1,24 @@
+{
+	"name": "pluginade",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pluginade/pluginade"
+	},
+	"scripts": {
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:md:js": "wp-scripts lint-md-js",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:js": "wp-scripts test-unit-js"
+	},
+	"devDependencies": {
+		"@wordpress/env": "^8.0.0",
+		"@wordpress/eslint-plugin": "^12.4.0",
+		"@wordpress/jest-preset-default": "^8.1.1",
+		"@wordpress/scripts": "24.0.0"
+	}
+}
