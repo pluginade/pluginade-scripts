@@ -5,7 +5,7 @@ It allows you to instantly run PHP WordPress Coding Standards, phpunit, eslint, 
 
 ## Getting Started
 
-1. Copy the contents of [this file](https://raw.githubusercontent.com/pluginade/pluginade/docker/pluginade.sh)
+1. Copy the contents of [this file](https://raw.githubusercontent.com/pluginade/pluginade-scripts/main/pluginade.sh)
 2. Create a new file in the root of your plugin called `pluginade.sh`
 3. Paste the contents into that file.
 4. In that file replace these strings:
