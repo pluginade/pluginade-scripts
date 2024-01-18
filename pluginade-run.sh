@@ -86,7 +86,7 @@ fi
 if [ $COMMAND = 'test:phpunit' ]; then
 	# Run PHP Unit Tests.
 	cd docker-phpunit;
-	sh run.sh -p "${PLUGIN_PATH}" -c "sh phpunit.sh -p -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 0 -s 1;
+	sh run.sh -p "${PLUGIN_PATH}" -c "sh phpunit.sh -p ${PLUGINBASENAME} -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 0 -s 1;
 	DOCKER_EXIT_CODE=$?
 	exit $DOCKER_EXIT_CODE
 fi

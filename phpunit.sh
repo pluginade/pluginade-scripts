@@ -16,7 +16,7 @@ plugindirname=$(basename "$plugindir")
 # Go to the wordpress directory inside the Docker Container
 cd /var/www/html;
 
-wp db create --allow-root;
+# wp db create --allow-root;
 
 wp core install --url=localhost:8080 --title="Pluginade Test Site" --admin_user=admin --admin_password=password --admin_email=test@example.com --allow-root;
 

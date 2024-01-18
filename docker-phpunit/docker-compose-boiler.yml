@@ -10,6 +10,9 @@ services:
     restart: always
     ports:
       - 8080:80
+    depends_on:
+      db:
+        condition: service_healthy  # Wait for health checks on db
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
@@ -31,9 +34,14 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
+    # volumes:
+    #   - db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1s
+      timeout: 2s
+      retries: 10
 
 volumes:
   wordpress:
-  db:
+#   db:

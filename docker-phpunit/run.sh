@@ -10,8 +10,6 @@ while getopts 'p:c:n:w:s:' flag; do
 	esac
 done
 
-CWD=$(pwd)
-
 WORKDIR='/usr/src/pluginade/pluginade-scripts/'
 
 PLUGIN_BASENAME=$(basename "$PLUGIN_PATH")
@@ -21,7 +19,6 @@ cp docker-compose-boiler.yml docker-compose.yml
 sed -i.bak "s~LOCAL_PATH_TO_PLUGIN~$PLUGIN_PATH~g" docker-compose.yml
 sed -i.bak "s~BASENAME_OF_PLUGIN~$PLUGIN_BASENAME~g" docker-compose.yml
 
-		
 # if [ "$INCLUDE_NODE_MODULES" = "0" ]; then
 
 # 	if [ -f "$PLUGIN_PATH/package.json" ];
@@ -67,7 +64,7 @@ for container_id in $container_ids; do
 	containerName=$(docker ps --format '{{.Names}}' --filter id=$container_id)
 	
 	if [ "$containerName" = "pluginade-phpunit-wordpress" ]; then
-		echo "Running phpunit"
+		echo "Running phpunit on $containerName"
 		docker exec -w $WORKDIR $container_id $COMMAND
 		THEEXITCODE=$?
 	fi
