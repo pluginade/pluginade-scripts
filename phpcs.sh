@@ -10,11 +10,9 @@ cp phpcs-boiler.xml phpcs.xml
 sed -i.bak "s/MadeWithPLUGINADE/$namespace/g" phpcs.xml
 sed -i.bak "s/madewithpluginade/$textdomain/g" phpcs.xml
 
-if [ -f "$plugindir/.phpcs.xml" ]; then
-	# Use the phpcs.xml file located in the plugin itself, allowing it to set its own standards.
-	pathToPhpcsXmlFile="$plugindir/.phpcs.xml"
-else
-	pathToPhpcsXmlFile="phpcs.xml"
+if [ -f "$plugindir/phpcs.xml" ]; then
+	# Copy the phpcs.xml file located in the plugin itself, into pluginade so it gets used.
+	cp "$plugindir/phpcs.xml" phpcs.xml
 fi
 
 # Run the phpcs command from the wp-content directory.
