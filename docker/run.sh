@@ -64,6 +64,8 @@ VOLUME_STRING="$VOLUME_STRING -v /$PLUGINBASENAME/.pluginade"
 # Build the docker image.
 docker build -t pluginade .
 
+COMMAND='ls'
+
 # Run the docker container.
 if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
 	echo '-------'
@@ -82,7 +84,6 @@ if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
 fi
 
 # Run the command passed-in.
-docker exec -w $WORKDIR $CONTAINER_ID ls
 docker exec -w $WORKDIR $CONTAINER_ID $COMMAND
 THEEXITCODE=$?
 
