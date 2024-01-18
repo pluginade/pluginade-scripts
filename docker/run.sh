@@ -19,11 +19,11 @@ PLUGINBASENAME=$(basename "$PLUGIN_PATH")
 #  Set up the downloads directory as a volume for the zip command, so we can put built zips there.
 os_type="$(uname -s)"
 
-if [ "$os_type" == "Linux" ]; then
+if [ "$os_type" = "Linux" ]; then
 	DOWNLOADSDIRECTORY="$HOME/Downloads"
-elif [ "$os_type" == "Darwin" ]; then
+elif [ "$os_type" = "Darwin" ]; then
 	DOWNLOADSDIRECTORY="$HOME/Downloads"
-elif [[ "$os_type" == MINGW* || "$os_type" == CYGWIN* ]]; then
+elif [[ "$os_type" = MINGW* || "$os_type" = CYGWIN* ]]; then
 	DOWNLOADSDIRECTORY="/c/Users/$(whoami)/Downloads"
 else
 	# Default to the plugin's zips directory.
