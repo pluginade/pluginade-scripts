@@ -19,6 +19,9 @@ echo 'Files in /var/www/html';
 ls;
 # wp db create --allow-root;
 
+echo 'Sleeping for 10 seconds';
+sleep 10;
+
 echo 'Installing WordPress';
 wp core install --url=localhost:8080 --title="Pluginade Test Site" --admin_user=admin --admin_password=password --admin_email=test@example.com --allow-root;
 
