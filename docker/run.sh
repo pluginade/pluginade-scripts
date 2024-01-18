@@ -82,6 +82,7 @@ if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
 fi
 
 # Run the command passed-in.
+docker exec -w $WORKDIR $CONTAINER_ID ls
 docker exec -w $WORKDIR $CONTAINER_ID $COMMAND
 THEEXITCODE=$?
 
