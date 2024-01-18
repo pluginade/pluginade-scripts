@@ -61,8 +61,8 @@ fi
 # Add a fake volume inside the plugin at .pluginade just in case pluginade has been cloned inside the plugin itself.
 VOLUME_STRING="$VOLUME_STRING -v /$PLUGINBASENAME/.pluginade"
 
-# Build the docker container.
-. ./build.sh
+# Build the docker image.
+docker build -t pluginade .
 
 # Run the docker container.
 if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
