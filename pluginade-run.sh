@@ -29,6 +29,8 @@ if [ $COMMAND = 'lint:php' ]; then
 	# Run PHP Code Sniffer with WordPress Coding Standards.
 	cd docker;
 	sh run.sh -p "${PLUGIN_PATH}" -c "sh phpcs.sh -p /${PLUGINBASENAME} -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 0 -s 1;
+	DOCKER_EXIT_CODE=$?
+	exit $DOCKER_EXIT_CODE
 fi
 
 # PHP Lint Fixing.
