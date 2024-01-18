@@ -1,7 +1,11 @@
 FROM php:8.2-fpm
 
-# Install unzip utility and libs needed by zip PHP extension 
-RUN apt-get update && apt-get install -y \
+# Install unzip utility and libs needed by zip PHP extension
+RUN apt-get clean
+RUN apt-get install -y --only-upgrade apt
+
+RUN apt-get update
+RUN apt-get install -y \
     zlib1g-dev \
     libzip-dev \
     unzip \
