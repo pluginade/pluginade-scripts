@@ -24,7 +24,10 @@
 // (it gets parsed by the upstream wizard in https://github.com/WordPress/WordPress/blob/f27cb65e1ef25d11b535695a660e7282b98eb742/wp-admin/setup-config.php#L356-L392)
 
 if ( defined( 'WP_CLI' ) && WP_CLI && ! isset( $_SERVER['HTTP_HOST'] ) ) {
-  $_SERVER['HTTP_HOST'] = 'localhost:8080';
+	$_SERVER['HTTP_HOST'] = 'localhost:8080';
+
+	// Using FS_METHOD direct is fine here because this is an isolated, throwaway environment.
+	define( 'FS_METHOD', 'direct' );
 }
 
 // a helper function to lookup "env_FILE", "env", then fallback
