@@ -23,7 +23,7 @@ services:
       - ./wp-config-docker.php:/var/www/html/wp-config.php
       - LOCAL_PATH_TO_PLUGIN:/var/www/html/wp-content/plugins/BASENAME_OF_PLUGIN
       - ./../:/usr/src/pluginade/pluginade-scripts
-      # - empty-volume: /var/www/html/wp-content/plugins/plugin/.pluginade
+      - /var/www/html/wp-content/plugins/BASENAME_OF_PLUGIN/.pluginade
 
   db:
     container_name: pluginade-phpunit-db
