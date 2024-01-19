@@ -13,10 +13,8 @@ done
 
 plugindirname=$(basename "$plugindir")
 
-# There is still a race condition in circleCi here. The database is not ready yet.
-# Temporary fix: sleep for 10 seconds.
+# Make sure the database docker container is ready.
 echo 'Waiting for database to be ready...';
-
 chmod +x ./wait-for-it.sh
 ./wait-for-it.sh db:3306 -t 60 -- echo "MySQL is ready!"
 
@@ -24,8 +22,6 @@ chmod +x ./wait-for-it.sh
 cd /var/www/html;
 
 # wp db create --allow-root;
-
-# sleep 10;
 
 echo 'Installing WordPress';
 wp core install --url=localhost:8080 --title="Pluginade Test Site" --admin_user=admin --admin_password=password --admin_email=test@example.com --allow-root;
