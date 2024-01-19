@@ -53,6 +53,9 @@ define( 'DB_CHARSET', getenv_docker('WORDPRESS_DB_CHARSET', 'utf8') );
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', getenv_docker('WORDPRESS_DB_COLLATE', '') );
 
+// Using FS_METHOD direct is fine here because this is an isolated, throwaway environment.
+define( 'FS_METHOD', 'direct' );
+
 $table_prefix  = 'wptests_';   // Only numbers, letters, and underscores please!
 
 define( 'WP_TESTS_DOMAIN', 'localhost:8080' );
