@@ -40,8 +40,12 @@ If you want to override any javascript standards in your own plugin, ass your ow
 #### To run PHPUnit on your plugin's code, run this command:
 `sh pluginade.sh test:phpunit`
 
+Note: At this time there isn't a way to run only tests in a single file, it just runs all of the tests in the plugin. This functionality is on the road map for pluginade in the future.
+
 #### To run Jest tests on your plugin's Javascript code, run this command:
 `sh pluginade.sh test:js`
+
+Note: At this time there isn't a way to run only tests in a single file, it just runs all of the tests in the plugin. This functionality is on the road map for pluginade in the future.
 
 #### To build your plugin with webpack, run this command:
 `sh pluginade.sh build`
