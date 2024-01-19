@@ -33,4 +33,4 @@ wp core install --url=localhost:8080 --title="Pluginade Test Site" --admin_user=
 cd /usr/src/pluginade/pluginade-scripts;
 composer install;
 
-vendor/bin/phpunit -c ./phpunit.xml.dist /var/www/html/wp-content/plugins/$plugindirname
+vendor/bin/phpunit --testdox -c ./phpunit.xml.dist /var/www/html/wp-content/plugins/$plugindirname
