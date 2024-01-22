@@ -10,12 +10,13 @@ for DIR in "$plugindir"/wp-modules/*; do
 	then
 		# Go to the directory of this wp-module.
 		cd "$DIR";
-		
-		if [ ! -d "$DIR/node_modules"  ]; then
+
+		# If this module does not have a node_modules directory, or if it is empty.
+		if [ ! -d node_modules ] || [ -z "$(ls -A "node_modules")" ]; then
 			# Run npm install for this module.
 			npm install;
-		fi;
-		
+		fi
+
 		# Run the build script for this module.
 		npm run build;
 	fi
@@ -26,7 +27,8 @@ for DIR in "$plugindir"/wp-modules/*; do
 		# Go to the directory of this wp-module.
 		cd "$DIR";
 		
-		if [ ! -d vendor ]; then
+		# If this module does not have a vendor directory, or if it is empty.
+		if [ ! -d vendor ] || [ -z "$(ls -A "vendor")" ]; then
 			composer install;
 		fi
 	fi
