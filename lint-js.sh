@@ -24,8 +24,12 @@ else
 	npm run lint:js "$plugindir" -- --config $eslintFileName;
 fi
 
+exit_code=$?
+
 # Reset the .eslintrc file in the plugin.
 if [ -f "$plugindir/.eslintrc-temp" ];
 then
 	mv "$plugindir/.eslintrc-temp" "$plugindir/.eslintrc";
 fi
+
+exit $exit_code;
