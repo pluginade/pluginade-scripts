@@ -6,6 +6,7 @@ build
 /vendor
 /phpcs.xml.bak
 /phpcs.xml
+/.eslintrc
 /.wp-env.json
 /.wp-env.json.bak
 .phpunit.result.cache
