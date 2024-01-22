@@ -21,7 +21,7 @@ plugindirname=$(basename "$plugindir")
 nodeversion=$( node -v );
 first3Chars=$(echo "$nodeversion" | cut -c1-3)
 
-if [ "${first3Chars}" != 'v14' ]; then
+if [ "${first3Chars}" != 'v20' ]; then
 	echo "Your version of node needs to be v14, but it is set to be "$nodeversion;
 	exit 1;
 fi

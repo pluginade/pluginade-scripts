@@ -18,9 +18,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install node and npm. The version here should match the version used by Gutenberg here:
 # https://github.com/WordPress/gutenberg/blob/trunk/.nvmrc
-# But also be kept up to date with the latest 14.something version here:
+# But also be kept up to date with the latest 20.something version here:
 # https://nodejs.org/en/blog/release/
-ENV NODE_VERSION=14.20.0
+ENV NODE_VERSION=20.10.0
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
