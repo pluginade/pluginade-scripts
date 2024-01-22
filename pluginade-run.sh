@@ -12,6 +12,19 @@ done
 
 PLUGINBASENAME=$(basename "$PLUGIN_PATH")
 
+# Install dependencies.
+if [ $COMMAND = 'install' ]; then
+	cd docker;
+	sh run.sh -p "${PLUGIN_PATH}" -c "sh install.sh -p /${PLUGINBASENAME} -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 1 -s 1;
+fi
+
+# Install dependencies, but remove them first.
+if [ $COMMAND = 'install:clean' ]; then
+	cd docker;
+	sh run.sh -p "${PLUGIN_PATH}" -c "sh install.sh -p /${PLUGINBASENAME} -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 1 -s 1;
+fi
+
+
 #  Start Dev Mode (npm run dev) for all wp-modules.
 if [ $COMMAND = 'dev' ]; then
 	cd docker;

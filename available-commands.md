@@ -1,5 +1,11 @@
 # Available Commands
 
+#### To install all dependencies from npm and composer for all wp-modules in your plugin run this command:
+`sh pluginade.sh install`
+
+#### To remove node_modules and vendor directories for all wp-modules in your plugin and re-install all dependencies from npm and composer run this command:
+`sh pluginade.sh install:clean`
+
 #### To lint your plugin's PHP code using WordPress Coding Standards, run this command:
 `sh pluginade.sh lint:php`
 

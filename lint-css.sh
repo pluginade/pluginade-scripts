@@ -2,6 +2,7 @@
 
 # Run setup.
 . ./setup.sh
+. ./install-npm.sh
 
 # Run the lint command from the wp-content directory.
 if [ "$fix" = "1" ]; then

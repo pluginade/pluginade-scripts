@@ -3,6 +3,12 @@
 # Run setup.
 . ./setup.sh
 
+# Delete the node_modules directory in the pluginade root.
+rm -rf node_modules
+
+# Delete the vendor directory in the pluginade root.
+rm -rf vendor
+
 # Loop through each wp-module in the plugin.
 for DIR in "$plugindir"/wp-modules/*; do
 	# If this module has a package.json file.
@@ -10,8 +16,8 @@ for DIR in "$plugindir"/wp-modules/*; do
 	then
 		# Go to the directory of this wp-module.
 		cd "$DIR";
-		# Run npm install for this module.
-		npm ci;
+		# Delete the node_modules directory in this wp-module.
+		rm -rf node_modules
 	fi
 	# If this module has a composer.json file.
 	if [ -f "$DIR/composer.json" ];
@@ -19,11 +25,14 @@ for DIR in "$plugindir"/wp-modules/*; do
 		# Go to the directory of this wp-module.
 		cd "$DIR";
 		
-		# Run composer install for this module.
-		composer install;
+		# Delete the vendor directory in this wp-module.
+		rm -rf vendor
 	fi
 
 done
+
+# Re-run install from scratch.
+. ./install.sh
 
 # Finish with a wait command, which lets a kill (cmd+c) kill all of the process created in this loop.
 wait;

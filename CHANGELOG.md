@@ -15,6 +15,9 @@
 - Prettier package set to use WordPress fork of prettier: wp-prettier
 - .eslintrc files located in plugin root directories are now copied into .pluginade, temporarily renamed to .eslintrc-temp and fixed once lint jobs are complete.
 - lint:js and lint:js:fix now default to use the config from @wordpress/scripts/config/.eslintrc.js, but can be overriden by a plugin with a custom .eslintrc file in the plugin root.
+- Recommended pluginade.sh file now does a `git fetch --tags` prior to checking a tag out.
+- When setup.sh runs `npm install`, it now confirms whether there are outdates packages by checking `npm outdated`, and re-installing if needed automatically.
+- Composer packages for wp-modules containing a composer.json file are now auto intalled before any pluginade script using setup.sh.
 
 ### Fixed
 - Sometimes `dev` and `build` could fail depending on the order of commands you've run. Now, we run npm install for wp-modules even if node_modules are empty. This can happen because we mount empty node_modules docker volumes to speed up some workflows like phpunit, but if npm install hasn't been run yet, node_modules doesn't even exist, so an empty directory was created. Now `dev` and `build` check if those directories are empty.

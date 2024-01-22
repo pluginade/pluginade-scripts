@@ -2,6 +2,7 @@
 
 # Run setup.
 . ./setup.sh
+. ./install-npm.sh
 
 # Check if there is an .eslintrc file in this project. If so, use it for standards. Otherwise,
 if [ -f "$plugindir/.eslintrc" ];
@@ -13,9 +14,8 @@ then
 	mv "$plugindir/.eslintrc" "$plugindir/.eslintrc-temp";
 	eslintFileName=".eslintrc";
 else 
-	# Copy the .eslintrc file WP scripts in node_modules to pluginade.
-	cp ./node_modules/@wordpress/scripts/config/.eslintrc.js ".eslintrc.js";
-	eslintFileName=".eslintrc.js";
+	# Use the .eslintrc file from WP scripts in node_modules.
+	eslintFileName="./node_modules/@wordpress/scripts/config/.eslintrc.js";
 fi
 
 if [ "$fix" = "1" ]; then

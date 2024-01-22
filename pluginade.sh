@@ -4,7 +4,7 @@
 
 # Set this to the version of pluginade-scripts you want to use.
 # For a list of available versions, see https://github.com/pluginade/pluginade-scripts/tags
-pluginadeversion="0.0.1";
+pluginadeversion="0.0.3-beta-1";
 
 # Change the following variables to your plugin's namespace and textdomain:
 textdomain="my-plugin-text-domain";
@@ -29,7 +29,7 @@ install_pluginade() {
 	if [ ! -d ./pluginade ]; then
 		echo "Installing pluginade into ${plugindir}/.pluginade";
 		git clone https://github.com/pluginade/pluginade-scripts ./.pluginade
-		cd .pluginade && git reset --hard && git checkout tags/$pluginadeversion && git pull origin tags/$pluginadeversion
+		cd .pluginade && git fetch --tags && git reset --hard && git checkout $pluginadeversion && git pull origin $pluginadeversion
 	fi
 }
 
