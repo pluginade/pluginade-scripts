@@ -3,8 +3,8 @@
 # This file is designed to be included in other scripts, and assumes you are currently in the pluginade root directory.
 
 # Install pluginade npm dependencies.
-if [ ! -d node_modules ] || [ -z "$(ls -A "$DIR/node_modules")" ]; then
-	echo "Running npm install in pluginade root at $DIR..."
+if [ ! -d node_modules ] || [ -z "$(ls -A "node_modules")" ]; then
+	echo "Running npm install in pluginade root at $PWD..."
 	npm install
 fi
 
