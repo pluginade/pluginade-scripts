@@ -16,6 +16,7 @@
 - lint:js and lint:js:fix now default to use the config from @wordpress/scripts/config/.eslintrc.js, but can be overriden by a plugin with a custom .eslintrc file in the plugin root.
 - Recommended pluginade.sh file now does a `git fetch --tags` prior to checking a tag out.
 - Composer packages for wp-modules containing a composer.json file are now auto installed before any pluginade script using setup.sh.
+- Jobs for test:js and lint:css are allowed to pass if no tests exist in the plugin.
 
 ### Fixed
 - Sometimes `dev` and `build` could fail depending on the order of commands you've run. Now, we run npm install for wp-modules even if node_modules are empty. This can happen because we mount empty node_modules docker volumes to speed up some workflows like phpunit, but if npm install hasn't been run yet, node_modules doesn't even exist, so an empty directory was created. Now `dev` and `build` check if those directories are empty.

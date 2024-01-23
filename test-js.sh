@@ -4,4 +4,4 @@
 . ./setup.sh
 . ./install-npm.sh
 
-npm run test:js -- --roots "$plugindir"
+npx wp-scripts test-unit-js --passWithNoTests --roots "$plugindir"
