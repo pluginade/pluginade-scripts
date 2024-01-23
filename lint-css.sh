@@ -12,14 +12,14 @@ if [ -z "$files" ]; then
 fi
 
 # Install pluginade npm dependencies.
-if [ ! -d node_modules ] || [ -z "$(ls -A "$DIR/node_modules")" ]; then
-	echo "Running npm install in pluginade root at $DIR..."
+if [ ! -d node_modules ] || [ -z "$(ls -A "node_modules")" ]; then
+	echo "Running npm install in pluginade root at $PWD..."
 	npm install
 fi
 
 # Run the lint command from the wp-content directory.
 if [ "$fix" = "1" ]; then
-	npm run lint:css "$plugindir"/**/css/src/*.*css  -- --fix;
+	npx wp-scripts lint-style "$plugindir"/**/*.*css --fix;
 else
-	npm run lint:css "$plugindir"/**/css/src/*.*css;
+	npx wp-scripts lint-style "$plugindir"/**/*.*css;
 fi

@@ -19,9 +19,9 @@ else
 fi
 
 if [ "$fix" = "1" ]; then
-	npm run lint:js "$plugindir" -- --config $eslintFileName --fix;
+	npx wp-scripts lint-js "$plugindir" --config $eslintFileName --fix;
 else
-	npm run lint:js "$plugindir" -- --config $eslintFileName;
+	npx wp-scripts lint-js "$plugindir" --config $eslintFileName;
 fi
 
 exit_code=$?
