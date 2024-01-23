@@ -30,19 +30,14 @@ else
 	DOWNLOADSDIRECTORY=$PLUGIN_PATH/zips;
 fi
 
-# Define the volumes to mount
-PLUGSIER_SCRIPTS_VOLUME="$(dirname "$CWD")"":/usr/src/pluginade/pluginade-scripts"
-PLUGIN_VOLUME="$PLUGIN_PATH:/$PLUGINBASENAME"
-DOWNLOADSDIRECTORY_VOLUME="$DOWNLOADSDIRECTORY"":/downloads"
-
 # Build the string of volumes we want for this container.
-VOLUME_STRING="-v $PLUGSIER_SCRIPTS_VOLUME -v $PLUGIN_VOLUME -v $DOWNLOADSDIRECTORY_VOLUME"
+EXTRAVOLUMES=""
 
 if [ "$INCLUDE_NODE_MODULES" = "0" ]; then
 
 	if [ -f "$PLUGIN_PATH/package.json" ];
 	then
-		VOLUME_STRING="$VOLUME_STRING -v /$PLUGINBASENAME/node_modules"
+		EXTRAVOLUMES="$EXTRAVOLUMES -v /$PLUGINBASENAME/node_modules"
 	fi
 
 	# Loop through each wp-module in the plugin, and create a fake volume where the node_modules directory lives.
@@ -52,14 +47,20 @@ if [ "$INCLUDE_NODE_MODULES" = "0" ]; then
 		if [ -f "$DIR/package.json" ];
 		then
 			MODULE_DIR_NAME="${DIR##*/}"
-			VOLUME_STRING="$VOLUME_STRING -v /$PLUGINBASENAME/wp-modules/$MODULE_DIR_NAME/node_modules"
+			EXTRAVOLUMES="$EXTRAVOLUMES -v /$PLUGINBASENAME/wp-modules/$MODULE_DIR_NAME/node_modules"
 		fi
 	
 	done
 fi
 
 # Add a fake volume inside the plugin at .pluginade just in case pluginade has been cloned inside the plugin itself.
-VOLUME_STRING="$VOLUME_STRING -v /$PLUGINBASENAME/.pluginade"
+EXTRAVOLUMES="$EXTRAVOLUMES -v /$PLUGINBASENAME/.pluginade"
+
+# Define the volumes to mount
+PLUGSIER_SCRIPTS_VOLUME="$(dirname "$CWD")"":/usr/src/pluginade/pluginade-scripts"
+DOWNLOADSDIRECTORY_VOLUME="$DOWNLOADSDIRECTORY"":/downloads"
+
+VOLUME_STRING="-v $PLUGSIER_SCRIPTS_VOLUME -v \"$PLUGIN_PATH\":/$PLUGINBASENAME -v $DOWNLOADSDIRECTORY_VOLUME $EXTRAVOLUMES"
 
 # Build the docker image.
 docker build -t pluginade .
@@ -75,7 +76,8 @@ if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
 	echo $COMMAND
 	echo '-------'
 fi
-CONTAINER_ID=$(docker run $VOLUME_STRING -it -d pluginade)
+
+CONTAINER_ID=$(docker run -v $PLUGSIER_SCRIPTS_VOLUME -v "$PLUGIN_PATH":/$PLUGINBASENAME -v $DOWNLOADSDIRECTORY_VOLUME -it -d pluginade)
 
 if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
 	echo '!!!theContainerId!!!'$CONTAINER_ID
