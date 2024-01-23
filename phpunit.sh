@@ -24,6 +24,13 @@ echo 'Waiting for database to be ready...';
 chmod +x ./wait-for-it.sh
 ./wait-for-it.sh db:3306 -t 60 -- echo "MySQL is ready!"
 
+exitCode=$?
+
+if [ $exitCode -ne 0 ]; then
+	echo "Database is not ready. Exiting.";
+	exit 1;
+fi
+
 # Go to the wordpress directory inside the Docker Container
 cd /var/www/html;
 

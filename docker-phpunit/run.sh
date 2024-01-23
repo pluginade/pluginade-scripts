@@ -56,13 +56,15 @@ if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
 fi
 container_ids=$(docker-compose ps -q)
 
+THEEXITCODE=1;
+
 # Iterate over container IDs
 for container_id in $container_ids; do
 	echo "Processing container ID: $container_id"
 	# Add your logic here
 
 	containerName=$(docker ps --format '{{.Names}}' --filter id=$container_id)
-	
+
 	if [ "$containerName" = "pluginade-phpunit-wordpress" ]; then
 		echo "Running phpunit on $containerName"
 		docker exec -w $WORKDIR $container_id $COMMAND
@@ -80,9 +82,9 @@ done
 # docker exec -w $WORKDIR $CONTAINER_ID $COMMAND
 # THEEXITCODE=$?
 
-# if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
-# 	echo '!!!theExitCode!!!'$THEEXITCODE
-# fi
+if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
+	echo '!!!theExitCode!!!'$THEEXITCODE
+fi
 
 for container_id in $container_ids; do
 	# Stop and remove this container when finished.
