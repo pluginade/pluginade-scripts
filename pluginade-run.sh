@@ -87,6 +87,15 @@ if [ $COMMAND = 'lint:js:fix' ]; then
 	exit $DOCKER_EXIT_CODE
 fi
 
+#  PHP Security Scan. 
+if [ $COMMAND = 'security:php' ]; then
+	# Run PHP Code Sniffer with WordPress Coding Standards.
+	cd docker;
+	sh run.sh -p "${PLUGIN_PATH}" -c "sh security-scan.sh -p /${PLUGINBASENAME} -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 0 -s 1;
+	DOCKER_EXIT_CODE=$?
+	exit $DOCKER_EXIT_CODE
+fi
+
 # JS Jest Testing.
 if [ $COMMAND = 'test:js' ]; then
 	cd docker;

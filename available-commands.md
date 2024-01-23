@@ -36,6 +36,9 @@ Note: At this time there isn't a way to run only tests in a single file, it just
 #### To run Jest tests on your plugin's Javascript code, run this command:
 `sh pluginade.sh test:js`
 
+#### To run a security scan on the plugin's PHP code using only security sniffs enabled from WordPress Coding Standards, run this command.
+`sh pluginade.sh security:php`
+
 Note: At this time there isn't a way to run only tests in a single file, it just runs all of the tests in the plugin. This functionality is on the road map for pluginade in the future.
 
 #### To build your plugin with webpack, run this command:

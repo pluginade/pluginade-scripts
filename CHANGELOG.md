@@ -4,6 +4,7 @@
 
 ### Added
 - Commands for install and install:clean added to available commands.
+- Command for doing a security scan of PHP code only, which is sh pluginade.sh security:php
 
 ### Changed
 - node version updated to 20 in line with WordPress core: https://github.com/WordPress/gutenberg/pull/56331
