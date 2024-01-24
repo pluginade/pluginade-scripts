@@ -13,4 +13,4 @@ It allows you to instantly run PHP WordPress Coding Standards, phpunit, eslint, 
 	- `MyPluginNamespace` - The unique namespace used for your plugin (Will be enforced as function/class prefix in WordPress Coding Standards)
 
 5. Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
-6. On the command line inside your plugin, run one of the [pluginade commands](https://github.com/pluginade/pluginade-scripts/blob/$pluginadeversion/available-commands.md).
+6. On the command line inside your plugin, run one of the [pluginade commands](https://github.com/pluginade/pluginade-scripts/main/available-commands.md).
