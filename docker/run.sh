@@ -6,7 +6,7 @@ while getopts 'p:c:n:w:s:' flag; do
 		c) COMMAND=${OPTARG} ;;
 		n) INCLUDE_NODE_MODULES=${OPTARG} ;;
 		w) WORKDIR=${OPTARG} ;;
-		s) SHOWPLUGSIERDETAILS=${OPTARG} ;;
+		s) SHOWPLUGINADEDETAILS=${OPTARG} ;;
 	esac
 done
 
@@ -57,29 +57,28 @@ fi
 EXTRAVOLUMES="$EXTRAVOLUMES -v /$PLUGINBASENAME/.pluginade"
 
 # Define the volumes to mount
-PLUGSIER_SCRIPTS_VOLUME="$(dirname "$CWD")"":/usr/src/pluginade/pluginade-scripts"
-DOWNLOADSDIRECTORY_VOLUME="$DOWNLOADSDIRECTORY"":/downloads"
+PATH_TO_PLUGINADE_SCRIPTS="$(dirname "$CWD")"
 
-VOLUME_STRING="-v $PLUGSIER_SCRIPTS_VOLUME -v \"$PLUGIN_PATH\":/$PLUGINBASENAME -v $DOWNLOADSDIRECTORY_VOLUME $EXTRAVOLUMES"
+# VOLUME_STRING="-v $PLUGINADE_SCRIPTS_VOLUME -v \"$PLUGIN_PATH\":/$PLUGINBASENAME -v $DOWNLOADSDIRECTORY_VOLUME $EXTRAVOLUMES"
 
 # Build the docker image.
 docker build -t pluginade .
 
 # Run the docker container.
-if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
+if [ "$SHOWPLUGINADEDETAILS" = "1" ]; then
 	echo '-------'
 	echo 'Starting the Pluginade docker container, built specifically for this job.'
 	echo '-------'
-	echo "docker run $VOLUME_STRING -it -d pluginade"
+	echo "docker run -v "$PATH_TO_PLUGINADE_SCRIPTS":/usr/src/pluginade/pluginade-scripts -v "$PLUGIN_PATH":/$PLUGINBASENAME -v "$DOWNLOADSDIRECTORY":/downloads -it -d pluginade"
 	echo '-------'
 	echo "Running Command inside Docker Container at location $WORKDIR:"
 	echo $COMMAND
 	echo '-------'
 fi
 
-CONTAINER_ID=$(docker run -v $PLUGSIER_SCRIPTS_VOLUME -v "$PLUGIN_PATH":/$PLUGINBASENAME -v $DOWNLOADSDIRECTORY_VOLUME -it -d pluginade)
+CONTAINER_ID=$(docker run -v "$PATH_TO_PLUGINADE_SCRIPTS":/usr/src/pluginade/pluginade-scripts -v "$PLUGIN_PATH":/$PLUGINBASENAME -v "$DOWNLOADSDIRECTORY":/downloads -it -d pluginade)
 
-if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
+if [ "$SHOWPLUGINADEDETAILS" = "1" ]; then
 	echo '!!!theContainerId!!!'$CONTAINER_ID
 fi
 
@@ -87,7 +86,7 @@ fi
 docker exec -w $WORKDIR $CONTAINER_ID $COMMAND
 THEEXITCODE=$?
 
-if [ "$SHOWPLUGSIERDETAILS" = "1" ]; then
+if [ "$SHOWPLUGINADEDETAILS" = "1" ]; then
 	echo '!!!theExitCode!!!'$THEEXITCODE
 fi
 
