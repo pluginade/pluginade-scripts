@@ -2,6 +2,7 @@
 
 # Run setup.
 . ./setup.sh
+. ./install-composer.sh
 
 # Duplicate the phpcs-security-only.xml boiler, and call it phpcs.xml.
 cp phpcs-security-only.xml phpcs.xml
