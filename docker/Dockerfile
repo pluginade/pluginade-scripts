@@ -20,7 +20,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # https://github.com/WordPress/gutenberg/blob/trunk/.nvmrc
 # But also be kept up to date with the latest 20.something version here:
 # https://nodejs.org/en/blog/release/
-ENV NODE_VERSION=20.10.0
+ENV NODE_VERSION=20.11.0
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 ENV NVM_DIR=/root/.nvm
