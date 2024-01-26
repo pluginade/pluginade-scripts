@@ -19,7 +19,7 @@ fi
 
 # Run the lint command from the wp-content directory.
 if [ "$fix" = "1" ]; then
-	npx wp-scripts lint-style "$plugindir"/**/*.*css --fix;
+	npx wp-scripts lint-style "$plugindir"/**/src/**/*.*css --fix;
 else
-	npx wp-scripts lint-style "$plugindir"/**/*.*css;
+	npx wp-scripts lint-style "$plugindir"/**/src/**/*.*css;
 fi
