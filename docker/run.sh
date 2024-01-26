@@ -69,14 +69,14 @@ if [ "$SHOWPLUGINADEDETAILS" = "1" ]; then
 	echo '-------'
 	echo 'Starting the Pluginade docker container, built specifically for this job.'
 	echo '-------'
-	echo "docker run -v "$PATH_TO_PLUGINADE_SCRIPTS":/usr/src/pluginade/pluginade-scripts -v "$PLUGIN_PATH":/$PLUGINBASENAME -v "$DOWNLOADSDIRECTORY":/downloads -it -d pluginade"
+	echo "docker run -v "$PATH_TO_PLUGINADE_SCRIPTS":/usr/src/pluginade/pluginade-scripts -v "$PLUGIN_PATH":/$PLUGINBASENAME -v "$DOWNLOADSDIRECTORY":/downloads $EXTRAVOLUMES -it -d pluginade"
 	echo '-------'
 	echo "Running Command inside Docker Container at location $WORKDIR:"
 	echo $COMMAND
 	echo '-------'
 fi
 
-CONTAINER_ID=$(docker run -v "$PATH_TO_PLUGINADE_SCRIPTS":/usr/src/pluginade/pluginade-scripts -v "$PLUGIN_PATH":/$PLUGINBASENAME -v "$DOWNLOADSDIRECTORY":/downloads -it -d pluginade)
+CONTAINER_ID=$(docker run -v "$PATH_TO_PLUGINADE_SCRIPTS":/usr/src/pluginade/pluginade-scripts -v "$PLUGIN_PATH":/$PLUGINBASENAME -v "$DOWNLOADSDIRECTORY":/downloads $EXTRAVOLUMES -it -d pluginade)
 
 if [ "$SHOWPLUGINADEDETAILS" = "1" ]; then
 	echo '!!!theContainerId!!!'$CONTAINER_ID
