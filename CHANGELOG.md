@@ -18,6 +18,8 @@
 - Recommended pluginade.sh file now does a `git fetch --tags` prior to checking a tag out.
 - Composer packages for wp-modules containing a composer.json file are now auto installed before any pluginade script using setup.sh.
 - Jobs for test:js and lint:css are allowed to pass if no tests exist in the plugin.
+- Jest test began to fail on wp-scripts 27, seemingly due to changed made here: https://github.com/WordPress/gutenberg/pull/43511. Added custom transformIgnorePatterns to jest.config.js
+- Now allow users to add their own custom jest config files to the root of their plugin.
 
 ### Fixed
 - Sometimes `dev` and `build` could fail depending on the order of commands you've run. Now, we run npm install for wp-modules even if node_modules are empty. This can happen because we mount empty node_modules docker volumes to speed up some workflows like phpunit, but if npm install hasn't been run yet, node_modules doesn't even exist, so an empty directory was created. Now `dev` and `build` check if those directories are empty.

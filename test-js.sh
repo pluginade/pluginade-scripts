@@ -15,7 +15,7 @@ then
 	eslintFileName="jest.config.js";
 else 
 	# Use the jest.config.js file from pluginade.
-	cp "$plugindir/jest.config.js.boiler" "jest.config.js";
+	cp "jest.config.js.boiler" "jest.config.js";
 fi
 
 npx wp-scripts test-unit-js --passWithNoTests --config  --roots "$plugindir/wp-modules/app/"
