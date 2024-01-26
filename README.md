@@ -14,3 +14,6 @@ It allows you to instantly run PHP WordPress Coding Standards, phpunit, eslint, 
 
 5. Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 6. On the command line inside your plugin, run one of the [pluginade commands](https://github.com/pluginade/pluginade-scripts/blob/main/available-commands.md).
+
+# Using Pluginade Scripts for CICD
+You can use Pluginade Scripts for CICD on services like CircleCI and Github Actions. To get started, [check out some of the CICD examples](https://github.com/pluginade/cicd-examples).
