@@ -43,7 +43,7 @@ install_pluginade;
 
 # Go to the pluginade directory inside the plugin.
 echo "Going to ${plugindir}/.pluginade";
-cd $plugindir/.pluginade;
+cd "$plugindir"/.pluginade;
 
 # Pass this command to pluginade-run.sh
 sh pluginade-run.sh -p "${plugindir}" -c $1 -t $textdomain -n $namespace;
