@@ -34,3 +34,6 @@ fi
 
 # npx wp-scripts test-unit-js --passWithNoTests --config  --roots "$plugindir/wp-modules/app/"
 PLAYWRIGHT_BROWSERS_PATH=$playwrightBrowserDirectory npx wp-scripts test-playwright --config playwright.config.ts
+
+## PROBLEM: This package uses wp-env, which uses docker, and since this is already running inside a docker container, it doesn't have docker available unless we do docker-in-docker.
+### Possible Fix: Do the same thing we did for phpunit, which was to build a custom docker image. We'd define that in playwright.config.ts.boiler under webServer.
