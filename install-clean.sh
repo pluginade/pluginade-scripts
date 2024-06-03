@@ -11,6 +11,10 @@ rm -rf node_modules
 echo 'Removing vendor directory in the pluginade root.'
 rm -rf vendor
 
+# Delete the playwright-browsers directory in the pluginade root.
+echo 'Removing vendor directory in the pluginade root.'
+rm -rf playwright-browsers
+
 # Loop through each wp-module in the plugin.
 for DIR in "$plugindir"/wp-modules/*; do
 	# If this module has a package.json file.

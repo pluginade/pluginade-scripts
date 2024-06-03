@@ -29,8 +29,8 @@ playwrightBrowserDirectory="playwright-browsers/";
 
 if [ ! -d "$playwrightBrowserDirectory" ]; then
 	mkdir -p "$playwrightBrowserDirectory";
+	PLAYWRIGHT_BROWSERS_PATH=$playwrightBrowserDirectory npx playwright install
 fi
-PLAYWRIGHT_BROWSERS_PATH=$playwrightBrowserDirectory npx playwright install
 
 # npx wp-scripts test-unit-js --passWithNoTests --config  --roots "$plugindir/wp-modules/app/"
-# PLAYWRIGHT_BROWSERS_PATH=$playwrightBrowserDirectory npx wp-scripts test-playwright --config playwright.config.ts
+PLAYWRIGHT_BROWSERS_PATH=$playwrightBrowserDirectory npx wp-scripts test-playwright --config playwright.config.ts
