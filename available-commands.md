@@ -38,6 +38,11 @@ Note: At this time there isn't a way to run only tests in a single file, it just
 
 Note: If you want to provide your own custom Jest coniguration, add a `jest.config.js` file to your plugin's root directory, and Pluginade will use that.
 
+#### To run end-to-end Playwright tests on your plugin:
+`sh pluginade.sh test:e2e`
+
+Note: If you want to provide your own custom Jest coniguration, add a `playwright.config.ts` file to your plugin's root directory, and Pluginade will use that.
+
 #### To run a security scan on the plugin's PHP code using only security sniffs enabled from WordPress Coding Standards, run this command.
 `sh pluginade.sh security:php`
 

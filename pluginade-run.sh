@@ -113,6 +113,20 @@ if [ $COMMAND = 'test:phpunit' ]; then
 	exit $DOCKER_EXIT_CODE
 fi
 
+# E2E Playright Testing.
+if [ $COMMAND = 'test:e2e' ]; then
+	# Run Playwright tests.
+	cd docker;
+	sh run.sh -p "${PLUGIN_PATH}" -c "sh test-e2e.sh -p /${PLUGINBASENAME} -t ${TEXTDOMAIN} -n ${NAMESPACE}" -n 1 -s 1;
+	DOCKER_EXIT_CODE=$?
+	exit $DOCKER_EXIT_CODE
+fi
+
+# "test:e2e:playwright": "npm run test:e2e",
+# 		"test:e2e:playwright:debug": "npm run test:e2e:debug",
+# 		"test:e2e:storybook": "playwright test --config test/storybook-playwright/playwright.config.ts",
+# 		"test:e2e:watch": "npm run test:e2e -- --watch",
+
 # Create a WP installable zip of the plugin.
 if [ $COMMAND = 'zip' ]; then
 	# Run PHP Unit Tests.

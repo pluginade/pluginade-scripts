@@ -14,3 +14,5 @@ build
 /docker-phpunit/docker-compose.yml.bak
 /docker-phpunit/docker-compose.yml
 
+playwright.config.ts
+/playwright-browsers

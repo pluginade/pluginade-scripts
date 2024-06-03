@@ -18,4 +18,4 @@ else
 	cp "jest.config.js.boiler" "jest.config.js";
 fi
 
-npx wp-scripts test-unit-js --passWithNoTests --config  --roots "$plugindir/wp-modules/app/"
+npx wp-scripts test-unit-js --passWithNoTests --config  --roots "$plugindir"
