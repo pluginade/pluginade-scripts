@@ -5,6 +5,7 @@
 ### Added
 - Commands for install and install:clean added to available commands.
 - Command for doing a security scan of PHP code only, which is sh pluginade.sh security:php
+- Global npm packages provided by WordPress core like react, react-dom, anything from @wordpress/, and more will now automatically sync their versions to the one provided by WordPress core prior to `npm install` being run. The version in your package.json file will automatically be updated to sync with the WP core package.json version, based on the "Tested up to" value in your plugin's readme.txt file.
 
 ### Changed
 - node version updated to 20 in line with WordPress core: https://github.com/WordPress/gutenberg/pull/56331

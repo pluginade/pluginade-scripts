@@ -5,6 +5,10 @@
 # Install pluginade npm dependencies.
 if [ ! -d node_modules ] || [ -z "$(ls -A "node_modules")" ]; then
 	echo "Running npm install in pluginade root at $PWD..."
+	# Sync the WP external global packages (like react, etc) in package.json with the WordPress version defined in the plugin's readme.txt file.
+	# See external packages https://github.com/WordPress/gutenberg/tree/trunk/packages/dependency-extraction-webpack-plugin
+	. /usr/src/pluginade/pluginade-scripts/sync-wp-global-packages.sh
+
 	npm install
 fi
 
@@ -16,6 +20,10 @@ for DIR in "$plugindir"/wp-modules/*; do
 		cd "$DIR";
 		
 		echo "Confirming npm dependencies for $DIR"
+
+		# Sync the WP external global packages (like react, etc) in package.json with the WordPress version defined in the plugin's readme.txt file.
+		# See external packages https://github.com/WordPress/gutenberg/tree/trunk/packages/dependency-extraction-webpack-plugin
+		. /usr/src/pluginade/pluginade-scripts/sync-wp-global-packages.sh
 
 		# Run npm install for this module.
 		if [ ! -d node_modules ] || [ -z "$(ls -A "$DIR/node_modules")" ]; then
